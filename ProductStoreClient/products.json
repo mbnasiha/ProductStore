@@ -1,0 +1,146 @@
+﻿{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "ProductStore"
+  },
+  "host": "localhost:50001",
+  "schemes": [ "http" ],
+  "paths": {
+    "/api/Products": {
+      "get": {
+        "tags": [ "Products" ],
+        "summary": "Get all products",
+        "operationId": "Products_Get",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/Product" }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [ "Products" ],
+        "summary": "Create a new product",
+        "operationId": "Products_PostProduct",
+        "consumes": [ "application/json", "text/json", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Product" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/Product" }
+          },
+          "201": { "description": "Created" }
+        }
+      }
+    },
+    "/api/Products/{id}": {
+      "get": {
+        "tags": [ "Products" ],
+        "summary": "Get a product",
+        "operationId": "Products_GetProduct",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/Product" }
+          }
+        }
+      },
+      "put": {
+        "tags": [ "Products" ],
+        "summary": "Update a product",
+        "operationId": "Products_PutProduct",
+        "consumes": [ "application/json", "text/json", "application/xml", "text/xml", "application/x-www-form-urlencoded" ],
+        "produces": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "product",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Product" }
+          }
+        ],
+        "responses": { "204": { "description": "NoContent" } }
+      },
+      "delete": {
+        "tags": [ "Products" ],
+        "summary": "Delete a product",
+        "operationId": "Products_DeleteProduct",
+        "consumes": [],
+        "produces": [ "application/json", "text/json", "application/xml", "text/xml" ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "$ref": "#/definitions/Product" }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "properties": {
+        "ProductID": {
+          "description": "Product ID",
+          "type": "string"
+        },
+        "Name": {
+          "description": "Name of the product",
+          "type": "string"
+        },
+        "Price": {
+          "format": "double",
+          "description": "Price of the product",
+          "type": "number"
+        },
+        "Category": {
+          "description": "Category of the product",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
